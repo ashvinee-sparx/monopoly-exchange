@@ -23,6 +23,11 @@ var Hapi = require('hapi'),
             path: '/templates/{path*}',
             handler: createDirectoryRoute('templates')
         },
+        partials: {
+            method: 'GET',
+            path: '/partials/{path*}',
+            handler: createDirectoryRoute('partials')
+        },
         spa: {
             method: 'GET',
             path: '/{path*}',
@@ -32,7 +37,7 @@ var Hapi = require('hapi'),
         }
     };
 
-server.route([ routes.css, routes.js, routes.assets, routes.templates, routes.spa ]);
+server.route([ routes.css, routes.js, routes.assets, routes.templates, routes.partials, routes.spa ]);
 server.start( onServerStarted );
 
 function onServerStarted() {

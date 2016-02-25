@@ -3678,6 +3678,21 @@ hr {
     .home-welcome .login-wrap a.button i {
       margin-right: 1em; }
 
+.home-links {
+  margin-top: 2em; }
+  .home-links ul {
+    margin: 0;
+    list-style: none;
+    text-align: center; }
+    .home-links ul li {
+      display: inline-block;
+      margin-right: 1em;
+      margin-top: 1em; }
+      .home-links ul li a {
+        color: #E0E0E0; }
+        .home-links ul li a:hover {
+          color: #333333; }
+
 /*--------------------------------------------------------------
 	4.0 Account
 --------------------------------------------------------------*/

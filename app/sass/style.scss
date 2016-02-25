@@ -139,6 +139,26 @@ hr {
   }
 }
 
+.home-links {
+  margin-top: 2em;
+  ul {
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      display: inline-block;
+      margin-right: 1em;
+      margin-top: 1em;
+      a {
+        color: #E0E0E0;
+        &:hover {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
 /*--------------------------------------------------------------
 	4.0 Account
 --------------------------------------------------------------*/

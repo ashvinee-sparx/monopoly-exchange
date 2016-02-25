@@ -15,8 +15,20 @@
       var uid = $cookies.get('mxuser');
       var profile = null;
 
-      function setCookie(cookie, value){
-        document.cookie = cookie + '=' + value;
+      function setCookie(name, value, days){
+
+        var expires;
+
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          expires = "; expires=" + date.toGMTString();
+          document.cookie = name + '=' + value + expires + "; path=/";
+        } else {
+          expires = "";
+          document.cookie = name + "=" + value + expires + "; path=/";
+        }
+        
       }
 
       return {
@@ -43,7 +55,7 @@
               };
 
               // Set the user's FB ID as a cookie
-              setCookie('mxuser', uid);
+              setCookie('mxuser', uid, 1);
 
               redirect('/');
 

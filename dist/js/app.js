@@ -306,7 +306,9 @@ require('./filters');
           ref.authWithOAuthPopup("facebook", function(error, authData) {
 
             if (error) {
+
               alert("It looks like your login failed. Please report this error to the site admin if the problem persists.", error);
+              
             } else {
 
               // The user's id

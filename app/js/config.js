@@ -32,6 +32,11 @@
           controller: 'mainCtrl',
           templateUrl: '/templates/account.html'
         })
+        .state('allTickets', {
+          url: '/all-tickets',
+          controller: 'mainCtrl',
+          templateUrl: '/templates/all-tickets.html'
+        })
         .state('userTickets', {
           url: '/my-tickets',
           controller: 'mainCtrl',

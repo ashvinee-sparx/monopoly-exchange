@@ -1,16 +1,3 @@
-<div class="row">
-  <div class="large-12 columns">
-    <div class="header-links">
-      <ul>
-        <li><a ui-sref="home" class="navbar-link">All Tickets</a></li>
-        <li><a ng-show="profile" ui-sref="userTickets" class="navbar-link active" >My Tickets</a></li>
-        <li><a ng-show="profile" ui-sref="account" class="navbar-link" >Account</a></li>
-        <li><a ng-show="profile" ng-click="logout()" class="navbar-link" >Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
   <div class="row user-tickets" ng-if="uid">
 
     <div class="large-3 large-push-9  columns">
@@ -41,7 +28,6 @@
         <div class="large-12 columns">
           <hr>
           <ul>
-            <li><a ui-sref="faq">FAQ</a></li>
             <li><a href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
           </ul>
         </div>

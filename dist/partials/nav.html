@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="header-links">
+      <ul ng-show="profile">
+        <li><a ui-sref="allTickets" class="navbar-link" ng-class="getView('/all-tickets')" >All Tickets</a></li>
+        <li><a ui-sref="userTickets" class="navbar-link" ng-class="getView('/my-tickets')">My Tickets</a></li>
+        <li><a ui-sref="account" class="navbar-link" ng-class="getView('/account')">My Account</a></li>
+        <li><a ui-sref="faq" ng-class="getView('/faq')">FAQ</a></li>
+        <li><a ng-click="logout()" class="navbar-link logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

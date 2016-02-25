@@ -46,6 +46,11 @@ require('./filters');
           controller: 'mainCtrl',
           templateUrl: '/templates/account.html'
         })
+        .state('allTickets', {
+          url: '/all-tickets',
+          controller: 'mainCtrl',
+          templateUrl: '/templates/all-tickets.html'
+        })
         .state('userTickets', {
           url: '/my-tickets',
           controller: 'mainCtrl',
@@ -67,9 +72,9 @@ require('./filters');
 
   angular
     .module('mxApp')
-    .controller('mainCtrl', [ '$scope', '$rootScope', '$cookies', '$firebaseObject', '$firebaseArray', 'FIREBASE_REF', 'AccountFactory', mainCtrl ]);
+    .controller('mainCtrl', [ '$scope', '$rootScope', '$cookies', '$location', '$firebaseObject', '$firebaseArray', 'FIREBASE_REF', 'AccountFactory', mainCtrl ]);
 
-    function mainCtrl($scope, $rootScope, $cookies, $firebaseObject, $firebaseArray, FIREBASE_REF, AccountFactory){
+    function mainCtrl($scope, $rootScope, $cookies, $location, $firebaseObject, $firebaseArray, FIREBASE_REF, AccountFactory){
 
 
       // Setup our variables
@@ -111,10 +116,21 @@ require('./filters');
       $scope.uid = uid;
       $rootScope.uid = uid;
 
-      // Really basic redirect for users that aren't logged in
+      // Detect the view so that we can apply an active class to the nav links
+      $scope.getView = function (path) {
+        if ( $location.path().substr(0, path.length) === path ) {
+          return 'active';
+        } else {
+          return '';
+        }
+      };
+
+      // Really basic redirect to manage logged out users and home page
       // TODO: Implement with ui.router $stateChangeStart and $stateChangeSuccess events
       if( $scope.uid === undefined && window.location.pathname !== '/' ){
         window.location = '/';
+      } else if ( $scope.uid && window.location.pathname === '/' ) {
+        window.location = '/account';
       }
 
       // Login Service

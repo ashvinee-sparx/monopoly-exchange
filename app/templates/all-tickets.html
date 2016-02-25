@@ -1,0 +1,37 @@
+<div class="row all-tickets" ng-show="uid">
+
+  <div class="large-6 large-centered columns">
+    <div class="ticket-search">
+      <h3>Search For Community Tickets</h3>
+      <form>
+        <input ng-model="search" type="text" placeholder="Enter a ticket number or prize name">
+        <p class="help-text" id="emailHelpText">The ticket list will automatically update as you type.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="large-12 columns">
+
+    <table class="table table-striped user-tickets">
+      <thead>
+        <th>Date Added</th>
+        <th>Ticket Number</th>
+        <th>Prize</th>
+        <th>Type</th>
+        <th>Contact</th>
+      </thead>
+      <tr ng-repeat="ticket in ticketsList | filter: search | orderBy: '-created'">
+        <td>{{ ticket.created | date:'mediumDate'  }}</td>
+        <td>{{ ticket.num }}</td>
+        <td>{{ ticket.prize }}</td>
+        <td ng-show="ticket.needed === false" class="available"><span class="label">Available</span></td>
+        <td ng-show="ticket.needed" class="needed"><span class="label">Needed</span></td>
+        <td>
+          <a href="https://facebook.com/{{ ticket.user | facebookLink }}" target="_blank"><i class="fa fa-facebook"></i></a>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

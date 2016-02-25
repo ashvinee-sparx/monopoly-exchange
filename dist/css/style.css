@@ -3621,10 +3621,12 @@ hr {
       .header-links ul li a:hover {
         background-color: white;
         padding: 0.35em 0.75em; }
-    .header-links ul li a.active {
-      background-color: white;
-      padding: 0.35em 0.75em;
-      border-radius: 2px; }
+      .header-links ul li a.active {
+        background-color: white;
+        padding: 0.35em 0.75em;
+        border-radius: 2px; }
+      .header-links ul li a.logout {
+        color: #666666; }
 
 /*--------------------------------------------------------------
 	3.0 Home
@@ -3742,7 +3744,15 @@ hr {
       font-weight: 500; }
 
 .ticket-search {
-  margin-bottom: 2em; }
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 3em 2em; }
+  .ticket-search h3 {
+    margin-bottom: 1em; }
+  .ticket-search p.help-text {
+    font-size: 1rem;
+    color: #999999; }
 
 .ticket-form {
   margin-bottom: 2em; }

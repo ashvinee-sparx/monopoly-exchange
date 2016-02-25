@@ -3611,6 +3611,9 @@ hr {
   margin: 0;
   list-style: none;
   text-align: center; }
+  @media only screen and (max-width: 40em) {
+    .header-links ul {
+      margin-bottom: 2em; } }
   .header-links ul li {
     display: inline-block; }
     .header-links ul li a {
@@ -3708,6 +3711,9 @@ hr {
     font-size: 22px;
     font-weight: 500;
     margin-bottom: 2em; }
+    @media only screen and (max-width: 40em) {
+      .user-tickets h3, .all-tickets h3 {
+        text-align: center; } }
   .user-tickets table, .all-tickets table {
     background-color: white; }
     .user-tickets table thead, .all-tickets table thead {
@@ -3767,7 +3773,10 @@ hr {
 	7.0 Footer
 --------------------------------------------------------------*/
 footer.site-footer {
-  margin-top: 2em; }
+  margin: 2em 0; }
+  @media only screen and (max-width: 40em) {
+    footer.site-footer {
+      margin-bottom: 3em; } }
   footer.site-footer ul {
     list-style: none;
     margin: 0;

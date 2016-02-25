@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="header-links">
+      <ul>
+        <li><a ui-sref="home" class="navbar-link">All Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="userTickets" class="navbar-link" >My Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="account" class="navbar-link active" >Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="large-4 large-centered columns">
+
+    <div ng-show="profile" class="profile-card">
+
+      <div class="img-wrap">
+        <img src="{{ profile.avatar }}" alt="avatar">
+      </div>
+
+      <p class="name">{{ profile.name }}<a href="https://facebook.com/{{ profile.facebookId }}"><i class="fa fa-facebook"></i></a></p>
+      <p class="email">{{ profile.email }} <a class="secondary label" ng-click="emailDelete()" ng-show="profile.email">Delete</a></p>
+
+      <form ng-submit="emailAdd(email)">
+        <div class="email-form">
+          <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-envelope"></i></span>
+            <input class="input-group-field" type="email" ng-model="email" id="email-input" placeholder="Email" aria-describedby="emailHelpText">
+            <div class="input-group-button">
+              <input type="submit" class="button" value="Submit">
+            </div>
+          </div>
+          <p class="help-text" id="emailHelpText"><span ng-show="profile.email">Update</span> Your Contact Email</p>
+        </div>
+      </form>
+
+      <!-- TODO: <a class="button">Delete Account</a> -->
+
+      <br>
+
+    </div>
+
+    <footer class="row site-footer">
+      <div class="large-12 columns">
+        <hr>
+        <ul>
+          <li><a ui-sref="faq">FAQ</a></li>
+          <li><a href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="header-links">
+      <ul>
+        <li><a ui-sref="home" class="navbar-link">All Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="userTickets" class="navbar-link active" >My Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="account" class="navbar-link" >Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <div class="row user-tickets" ng-if="uid">
+
+    <div class="large-3 large-push-9  columns">
+
+      <h3>Submit a Ticket</h3>
+
+      <div class="ticket-form">
+        <form ng-submit="validateTicket(number)">
+          <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-plus"></i></span>
+            <input is-in="ticketsArray" class="input-group-field" type="text" ng-model="number" id="email-input" placeholder="Example: A500A" aria-describedby="emailHelpText">
+            <div class="input-group-button">
+              <input type="submit" class="button" value="Submit">
+            </div>
+          </div>
+          <p ng-show="invalidTicketMessage" class="alert label"><i class="fa fa-exclamation-circle"></i>{{ invalidTicketMessage }}</p>
+        </form>
+      </div>
+
+      <footer class="row site-footer">
+        <div class="large-12 columns">
+          <hr>
+          <ul>
+            <li><a ui-sref="faq">FAQ</a></li>
+            <li><a href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
+          </ul>
+        </div>
+      </footer>
+
+    </div>
+
+    <div class="large-9 large-pull-3 columns">
+
+      <h3>Your Submitted Tickets</h3>
+
+      <table class="table table-striped">
+        <thead>
+          <th>Date Added</th>
+          <th>Ticket Number</th>
+          <th>Prize</th>
+          <th>Type</th>
+          <th>Actions</th>
+        </thead>
+        <tr ng-repeat="ticket in ticketsList | filter: uid | orderBy: '-created' ">
+
+          <td>{{ ticket.created | date:'mediumDate' }}</td>
+          <td>{{ ticket.num }}</td>
+          <td>{{ ticket.prize }}</td>
+          <td ng-show="ticket.needed === false" class="available type"><span class="label">Available</span></td>
+          <td ng-show="ticket.needed" class="needed type"><span class="label">Needed</span></td>
+          <td>
+            <a ng-click="ticketStatus(ticket)"><span class="secondary label">Toggle Type</span></a> -
+            <a ng-click="deleteTicket(ticket)">Delete</a>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+  </div>

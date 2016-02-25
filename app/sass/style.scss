@@ -1,0 +1,287 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Defaults
+2.0 Header
+3.0 Home
+4.0 Account
+5.0 Tickets List
+6.0 FAQ
+7.0 Footer
+
+--------------------------------------------------------------*/
+
+@import "foundation";
+@import "mixins";
+
+%sourceSansPro { font-family: 'Source Sans Pro', sans-serif; }
+
+/*--------------------------------------------------------------
+	1.0 Defaults
+--------------------------------------------------------------*/
+body {
+  background-color: #F7F9FA;
+}
+body, h1, h2, h3, h4, h5, h6 {
+  @extend %sourceSansPro;
+  color: #222222;
+  line-height: 1.2;
+}
+
+p, a {
+  font-weight: normal;
+}
+
+hr {
+  border-color: #ECEFF1;
+}
+
+.label {
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  &.secondary {
+    background: #efefef;
+    color: #999999;
+    &:hover {
+      color: #333333;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+	2.0 Header
+--------------------------------------------------------------*/
+.logo {
+  @include horizontal-align;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.header-links ul {
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  li {
+    display: inline-block;
+    a {
+      padding: 0 0.75em;
+      &:hover {
+        background-color: white;
+        padding: 0.35em 0.75em;
+      }
+    }
+    a.active {
+      background-color: white;
+      padding: 0.35em 0.75em;
+      border-radius: 2px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+	3.0 Home
+--------------------------------------------------------------*/
+.home-welcome {
+  @include bp-medium {
+    text-align: center;
+  }
+  @include bp-small {
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 1em 0;
+  }
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .login-wrap {
+    padding: 8em 0;
+    background-color: white;
+    border-radius: 5px;
+    @include bp-medium {
+      margin-top: 2em;
+    }
+    @include bp-small {
+      margin-top: 2em;
+    }
+    a.button {
+      font-weight: 600;
+      padding: 1.25em 1.5em;
+      @include horizontal-align;
+      i {
+        margin-right: 1em;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+	4.0 Account
+--------------------------------------------------------------*/
+.profile-card {
+  margin-top: 5em;
+  background-color: white;
+  .img-wrap {
+    padding: 2em 0;
+    img {
+      border-radius: 50%;
+      margin: 0 auto;
+      display: table;
+    }
+  }
+  p {
+    text-align: center;
+    margin-bottom: 0.5em;
+    &.name {
+      font-size: 22px;
+      a {
+        padding-left: 0.5em;
+        font-size: 0.85em;
+      }
+    }
+    &.help-text {
+      text-align: left;
+      color: #B0BEC5;
+    }
+  }
+
+  .email-form {
+    margin: 4em 0 0 0;
+    padding: 0 2em;
+    .input-group-label {
+      background-color: white;
+    }
+    i {
+      color: #757575;
+    }
+  }
+
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+
+  -moz-box-shadow:    0px 3px 15px 1px #efefef;
+  -webkit-box-shadow: 0px 3px 15px 1px #efefef;
+  box-shadow:         0px 3px 15px 1px #efefef;
+}
+
+/*--------------------------------------------------------------
+	5.0 Tickets List
+--------------------------------------------------------------*/
+
+.user-tickets, .all-tickets {
+  margin-top: 2em;
+  h3 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 2em;
+  }
+  table {
+    background-color: white;
+    thead {
+      border: none;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    tbody {
+      border: none;
+    }
+    th {
+      font-weight: 600;
+      background-color: white;
+      padding: 1.25rem 0.825rem 1rem;
+    }
+    td {
+      padding: 1.25rem 0.825rem 1rem;
+    }
+    tr:nth-child(even){
+      background-color: #F7F9FA;
+    }
+    td.available span {
+      background-color: #8BC34A;
+      font-weight: bold;
+      padding: 0.3rem 0.5rem;
+    }
+    td.needed span {
+      background-color: #EF5350;
+      font-weight: bold;
+      padding: 0.3rem 0.5rem;
+    }
+    td.type {
+      text-align: center;
+      font-weight: 500;
+    }
+  }
+
+}
+
+.ticket-search {
+  margin-bottom: 2em;
+}
+
+.ticket-form {
+  margin-bottom: 2em;
+  .input-group-label {
+    background-color: white;
+  }
+  i {
+    color: #757575;
+  }
+  p.alert {
+    padding: 0.5em 1em;
+  }
+  p i {
+    color: white;
+    padding-right: 0.5em;
+  }
+}
+
+/*--------------------------------------------------------------
+	6.0 FAQ
+--------------------------------------------------------------*/
+.faq {
+  h3 {
+    text-align: center;
+    margin: 2em 0;
+  }
+  .callout {
+    padding: 2em;
+    h5 {
+      font-weight: 600;
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+	7.0 Footer
+--------------------------------------------------------------*/
+footer.site-footer {
+  margin-top: 2em;
+  ul {
+    list-style: none;
+    margin: 0;
+    float: right;
+    @include bp-medium {
+      float: none;
+      text-align: center;
+    }
+    @include bp-small {
+      float: none;
+      text-align: center;
+    }
+    li {
+      display: inline-block;
+      padding-left: 1em;
+      a {
+        color: #9E9E9E;
+        &:hover {
+          color: #424242;
+        }
+      }
+    }
+  }
+}

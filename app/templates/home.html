@@ -1,0 +1,80 @@
+<div class="home-welcome" ng-show="!uid">
+
+  <div class="row">
+    <div class="large-6 columns">
+      <h1>Welcome to the Monopoly Exchange</h1>
+      <h2>If you're playing the 2016 Jewel-Osco Monopoly game, then this is a site for you. Find tickets that you need and list your duplicates for others to use!</h2>
+    </div>
+
+    <div class="large-6 columns">
+      <div class="login-wrap">
+        <a class="button" ng-show="!profile" ng-click="facebookLogin()">
+          <i class="fa fa-facebook"></i>Sign in with Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row" ng-show="uid">
+  <div class="large-12 columns">
+    <div class="header-links">
+      <ul>
+        <li><a ui-sref="home" class="navbar-link active">All Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="userTickets" class="navbar-link" >My Tickets</a></li>
+        <li><a ng-show="profile" ui-sref="account" class="navbar-link" >Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row all-tickets" ng-show="uid">
+
+  <div class="large-3 large-push-9 columns">
+    <div class="ticket-search">
+      <h3>Search For Tickets</h3>
+      <form>
+        <input ng-model="search" type="text" placeholder="Enter a ticket number or prize name">
+      </form>
+    </div>
+
+    <footer class="row site-footer">
+      <div class="large-12 columns">
+        <hr>
+        <ul>
+          <li><a ui-sref="faq">FAQ</a></li>
+          <li><a href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="large-9 large-pull-3 columns">
+
+    <h3>Community Tickets</h3>
+
+    <table class="table table-striped user-tickets">
+      <thead>
+        <th>Date Added</th>
+        <th>Ticket Number</th>
+        <th>Prize</th>
+        <th>Type</th>
+        <th>Contact</th>
+      </thead>
+      <tr ng-repeat="ticket in ticketsList | filter: search | orderBy: '-created'">
+        <td>{{ ticket.created | date:'mediumDate'  }}</td>
+        <td>{{ ticket.num }}</td>
+        <td>{{ ticket.prize }}</td>
+        <td ng-show="ticket.needed === false" class="available"><span class="label">Available</span></td>
+        <td ng-show="ticket.needed" class="needed"><span class="label">Needed</span></td>
+        <td>
+          <a href="https://facebook.com/{{ ticket.user | facebookLink }}" target="_blank"><i class="fa fa-facebook"></i></a>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

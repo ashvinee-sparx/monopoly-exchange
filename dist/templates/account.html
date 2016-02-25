@@ -4,12 +4,14 @@
 
     <div ng-show="profile" class="profile-card">
 
+      <div class="help-tip"><p>Your profile cards only shows basic account information. Entering your email address is optional.</p></div>
+
       <div class="img-wrap">
         <img src="{{ profile.avatar }}" alt="avatar">
       </div>
 
       <p class="name">{{ profile.name }}<a href="https://facebook.com/{{ profile.facebookId }}"><i class="fa fa-facebook"></i></a></p>
-      <p class="email">{{ profile.email }} <a class="secondary label" ng-click="emailDelete()" ng-show="profile.email">Delete</a></p>
+      <p class="email">{{ profile.email }} <a class="secondary label email-delete" ng-click="emailDelete()" ng-show="profile.email">Delete</a></p>
 
       <form ng-submit="emailAdd(email)">
         <div class="email-form">
@@ -20,7 +22,8 @@
               <input type="submit" class="button" value="Submit">
             </div>
           </div>
-          <p class="help-text" id="emailHelpText"><span ng-show="profile.email">Update</span> Your Contact Email</p>
+
+          <p class="help-text" id="emailHelpText"><span ng-show="profile.email">Update</span> Your Contact Email </p>
         </div>
       </form>
 

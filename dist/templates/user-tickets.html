@@ -2,17 +2,13 @@
 
     <div class="large-3 large-push-9  columns">
 
-      <h3>Submit a Ticket</h3>
-
+      <h3>Submit a Ticket </h3>
       <div class="ticket-form">
 
         <form name="ticketForm" ng-submit="validateTicket(ticketForm)">
 
           <div class="input-group">
-            <span class="input-group-label"><i class="fa fa-plus"></i></span>
-
             <input name="ticketInput" ng-model="ticketForm.number" is-in="ticketsArray" class="input-group-field" type="text" id="email-input" placeholder="Example: A500A" aria-describedby="emailHelpText">
-
             <div class="input-group-button">
               <input type="submit" class="button" value="Submit">
             </div>
@@ -24,11 +20,16 @@
 
       </div>
 
+      <div class="submit-details">
+        <p>Listing a ticket is easy! Simply enter the ID of the ticket and it'll automagically display in the community ticket list.</p>
+        <p>Click the "Type" button next to the ticket to change its type.</p>
+      </div>
+
       <footer class="row site-footer">
         <div class="large-12 columns">
           <hr>
           <ul>
-            <li><a href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
+            <li><a target="_blank" href="https://github.com/jamigibbs/monopoly-exchange/issues">Report an Issue</a></li>
           </ul>
         </div>
       </footer>
@@ -39,13 +40,13 @@
 
       <h3>Your Submitted Tickets</h3>
 
-      <table class="table table-striped">
+      <table class="table table-striped hover">
         <thead>
           <th>Date Added</th>
           <th>Ticket Number</th>
           <th>Prize</th>
-          <th>Type</th>
-          <th>Actions</th>
+          <th class="type">Type <div class="help-tip"><p>"Needed" means that you're looking for that ticket and "Available" means you have that ticket available.</p></div></th>
+          <th class="actions">Actions <div class="help-tip"><p>Click "Type" to toggle your ticket's type. Click "Delete" to remove it entirely.</p></div></th>
         </thead>
         <tr ng-repeat="ticket in ticketsList | filter: uid | orderBy: '-created' ">
 
@@ -54,9 +55,9 @@
           <td>{{ ticket.prize }}</td>
           <td ng-show="ticket.needed === false" class="available type"><span class="label">Available</span></td>
           <td ng-show="ticket.needed" class="needed type"><span class="label">Needed</span></td>
-          <td>
-            <a ng-click="ticketStatus(ticket)"><span class="secondary label">Toggle Type</span></a> -
-            <a ng-click="deleteTicket(ticket)">Delete</a>
+          <td class="actions">
+            <a ng-click="ticketStatus(ticket)"><span class="secondary label">Type</span></a>
+            <a ng-click="deleteTicket(ticket)"><span class="secondary label delete">Delete</span></a>
           </td>
         </tr>
       </table>

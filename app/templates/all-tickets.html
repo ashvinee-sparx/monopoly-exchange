@@ -2,34 +2,40 @@
 
   <div class="large-6 large-centered columns">
     <div class="ticket-search">
+      <div class="help-tip">
+      	<p>This page lists all of the tickets submitted by the community ordered chronologically. You can search by ticket number and prize name.</p>
+      </div>
       <h3>Search For Community Tickets</h3>
       <form>
         <input ng-model="search" type="text" placeholder="Enter a ticket number or prize name">
-        <p class="help-text" id="emailHelpText">The ticket list will automatically update as you type.</p>
+        <p class="help-text" id="emailHelpText">The ticket list below will automatically update as you type.</p>
       </form>
     </div>
   </div>
-
   <div class="large-12 columns">
 
     <table class="table table-striped user-tickets">
       <thead>
-        <th>Date Added</th>
-        <th>Ticket Number</th>
-        <th>Prize</th>
-        <th>Type</th>
-        <th>Contact</th>
+        <tr>
+          <th>Date Added</th>
+          <th>Ticket Number</th>
+          <th>Prize</th>
+          <th class="type">Type <div class="help-tip"><p>"Needed" means that the user is looking for that ticket (can you help them?) and "Available" means the user has one available to give.</p></div></th>
+          <th class="contact">Contact <div class="help-tip"><p>Use the Facebook link in the ticket row to get in touch with the person who submitting that entry.</p></div></th>
+        </tr>
       </thead>
-      <tr ng-repeat="ticket in ticketsList | filter: search | orderBy: '-created'">
-        <td>{{ ticket.created | date:'mediumDate'  }}</td>
-        <td>{{ ticket.num }}</td>
-        <td>{{ ticket.prize }}</td>
-        <td ng-show="ticket.needed === false" class="available"><span class="label">Available</span></td>
-        <td ng-show="ticket.needed" class="needed"><span class="label">Needed</span></td>
-        <td>
-          <a href="https://facebook.com/{{ ticket.user | facebookLink }}" target="_blank"><i class="fa fa-facebook"></i></a>
-        </td>
-      </tr>
+      <tbody>
+        <tr ng-repeat="ticket in ticketsList | filter: search | orderBy: '-created'">
+          <td>{{ ticket.created | date:'mediumDate'  }}</td>
+          <td>{{ ticket.num }}</td>
+          <td>{{ ticket.prize }}</td>
+          <td ng-show="ticket.needed === false" class="available"><span class="label">Available</span></td>
+          <td ng-show="ticket.needed" class="needed"><span class="label">Needed</span></td>
+          <td class="contact">
+            <a href="https://facebook.com/{{ ticket.user | facebookLink }}" target="_blank"><i class="fa fa-facebook"></i></a>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
   </div>

@@ -58,6 +58,11 @@
         AccountFactory.facebookLogin();
       };
 
+      // Logout Service
+      $scope.logout = function(){
+        AccountFactory.logout();
+      };
+
       // Profile Service
       $scope.profile = AccountFactory.userProfile();
 

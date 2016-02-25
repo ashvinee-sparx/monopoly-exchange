@@ -106,6 +106,11 @@
 
         emailDelete: function(){
           ref.child('users').child(uid).child('email').remove();
+        },
+
+        logout: function(){
+          $cookies.remove('mxuser');
+          redirect('/');
         }
 
       };

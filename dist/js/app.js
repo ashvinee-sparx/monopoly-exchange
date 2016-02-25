@@ -122,6 +122,11 @@ require('./filters');
         AccountFactory.facebookLogin();
       };
 
+      // Logout Service
+      $scope.logout = function(){
+        AccountFactory.logout();
+      };
+
       // Profile Service
       $scope.profile = AccountFactory.userProfile();
 
@@ -397,6 +402,11 @@ require('./filters');
 
         emailDelete: function(){
           ref.child('users').child(uid).child('email').remove();
+        },
+
+        logout: function(){
+          $cookies.remove('mxuser');
+          redirect('/');
         }
 
       };

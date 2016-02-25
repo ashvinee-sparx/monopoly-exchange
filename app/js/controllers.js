@@ -76,7 +76,13 @@
       // Filtering done in the view
       $scope.ticketsList = $firebaseArray(ticketsRef);
 
-      $scope.validateTicket = function(number){
+      // Make sure the ticket number entered is valid
+      $scope.validateTicket = function(ticketObj){
+
+        $scope.ticketForm = ticketObj;
+
+        // Grab ticket number from the ticket form object
+        var number = $scope.ticketForm.number;
 
         // Convert all entries to uppercase
         number = number.toUpperCase();
@@ -90,14 +96,14 @@
         } else {
           // Display the invalid ticket message to the user
           $scope.invalidTicketMessage = "Invalid number. Double check your ticket.";
-          // Clear the submission form
-          $scope.number = '';
         }
 
       };
 
       // Ticket Add
       $scope.addTicket = function(number) {
+
+        $scope.number = number;
 
         // Get the first character of the ticket number
         $scope.ticketNum = number;
@@ -132,6 +138,7 @@
 
           // If the user is logged in, add the new ticket to the db
           if(uid){
+
             $scope.ticketsList.$add({
               needed:   false,
               created:  Date.now(),
@@ -139,14 +146,18 @@
               user:     uid,
               prize:    prizeName
             });
+
           } else {
             alert("Sorry, it doesn't look like you're logged in");
           }
 
         });
 
-        // Clear the submission form
-        $scope.number = '';
+        // Clear and reset the form
+        $scope.ticketForm.$setPristine();
+        $scope.ticketForm.$setUntouched();
+        $scope.ticketForm.number = '';
+
       };
 
       // Ticket Deleted

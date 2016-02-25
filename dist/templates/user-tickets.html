@@ -17,16 +17,23 @@
       <h3>Submit a Ticket</h3>
 
       <div class="ticket-form">
-        <form ng-submit="validateTicket(number)">
+
+        <form name="ticketForm" ng-submit="validateTicket(ticketForm)">
+
           <div class="input-group">
             <span class="input-group-label"><i class="fa fa-plus"></i></span>
-            <input is-in="ticketsArray" class="input-group-field" type="text" ng-model="number" id="email-input" placeholder="Example: A500A" aria-describedby="emailHelpText">
+
+            <input name="ticketInput" ng-model="ticketForm.number" is-in="ticketsArray" class="input-group-field" type="text" id="email-input" placeholder="Example: A500A" aria-describedby="emailHelpText">
+
             <div class="input-group-button">
               <input type="submit" class="button" value="Submit">
             </div>
           </div>
+
           <p ng-show="invalidTicketMessage" class="alert label"><i class="fa fa-exclamation-circle"></i>{{ invalidTicketMessage }}</p>
+
         </form>
+
       </div>
 
       <footer class="row site-footer">

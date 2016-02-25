@@ -28,7 +28,7 @@
           expires = "";
           document.cookie = name + "=" + value + expires + "; path=/";
         }
-        
+
       }
 
       return {
@@ -57,8 +57,6 @@
               // Set the user's FB ID as a cookie
               setCookie('mxuser', uid, 1);
 
-              redirect('/');
-
               // attempt to get the child in the collection by uid.
               ref.child('users').child(uid).once('value', function(snapshot){
 
@@ -68,8 +66,6 @@
                   // get the ref (in this case /users/uid) and update its content
                   snapshot.ref().update(user);
 
-                  redirect('/');
-
                 } else {
 
                   // If account doesn't exist, wrap the data in an object with
@@ -77,12 +73,16 @@
                   // to the parent
                   var payload = {};
                   payload[uid] = user;
+
                   // get the ref's parent and call update on it.
                   snapshot.ref().parent().update(payload);
 
                 }
 
               });
+
+              // Once they're logged in, redirect the user to their account page
+              redirect('/account');
 
             }
 

@@ -48,66 +48,8 @@
 
             if (error) {
 
-              if (error.code === "TRANSPORT_UNAVAILABLE") {
-
-                // fall-back to browser redirects, and pick up the session
-                // automatically when we come back to the origin page
-                ref.authWithOAuthRedirect("facebook", function(error) {
-
-                  ref.onAuth(authDataCallback);
-
-                  alert(uid);
-                  
-                  // The user's id
-                  uid = authData.uid;
-
-                  // the data for the user object being created.
-                  var user = {
-                    facebookId: authData.facebook.id,
-                    created:    Date.now(),
-                    name:       authData.facebook.displayName,
-                    avatar:     authData.facebook.profileImageURL
-                  };
-
-                  // Set the user's FB ID as a cookie
-                  setCookie('mxuser', uid, 1);
-
-                  // attempt to get the child in the collection by uid.
-                  ref.child('users').child(uid).once('value', function(snapshot){
-
-                    // if data exists
-                    if (snapshot.exists()) {
-
-                      // get the ref (in this case /users/uid) and update its content
-                      snapshot.ref().update(user);
-
-                    } else {
-
-                      // If account doesn't exist, wrap the data in an object with
-                      // a member named after the uid so we can pass it as an update
-                      // to the parent
-                      var payload = {};
-                      payload[uid] = user;
-
-                      // get the ref's parent and call update on it.
-                      snapshot.ref().parent().update(payload);
-
-                    }
-
-                  });
-
-                  // Once they're logged in, redirect the user to their account page
-                  redirect('/account');
-
-
-                });
-
-              } else {
-
-                alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
-
-              }
-
+              alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
+              
             } else {
 
               // The user's id

@@ -31,6 +31,15 @@
 
       }
 
+      function authDataCallback(authData) {
+        if (authData) {
+          uid = authData.uid;
+        } else {
+          console.log("User is logged out");
+        }
+      }
+
+
       return {
 
         facebookLogin: function(){
@@ -39,7 +48,19 @@
 
             if (error) {
 
-              alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
+              if (error.code === "TRANSPORT_UNAVAILABLE") {
+
+                // fall-back to browser redirects, and pick up the session
+                // automatically when we come back to the origin page
+                ref.authWithOAuthRedirect("facebook", function(error) {
+                  ref.onAuth(authDataCallback);
+                });
+
+              } else {
+
+                alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
+
+              }
 
             } else {
 

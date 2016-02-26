@@ -354,7 +354,7 @@ require('./filters');
 
               switch (error.code) {
                 case "TRANSPORT_UNAVAILABLE":
-                  alert("Login isn't working for this browser on mobile right now. Error: TRANSPORT_UNAVAILABLE");
+                  alert("Login isn't working for this browser on mobile right now. Please try using a different browser.");
                   break;
                 default:
                   alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);

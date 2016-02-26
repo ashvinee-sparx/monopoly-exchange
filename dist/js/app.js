@@ -328,7 +328,6 @@ require('./filters');
       var profile = null;
 
       function setCookie(name, value, days){
-
         var expires;
 
         if (days) {
@@ -340,18 +339,7 @@ require('./filters');
           expires = "";
           document.cookie = name + "=" + value + expires + "; path=/";
         }
-
       }
-
-      function authDataCallback(authData) {
-        if (authData) {
-          uid = authData.uid;
-        } else {
-          console.log("User is logged out");
-        }
-      }
-
-
       return {
 
         facebookLogin: function(){
@@ -359,10 +347,16 @@ require('./filters');
           ref.authWithOAuthPopup("facebook", function(error, authData) {
 
             if (error) {
-
-              alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
               
-            } else {
+              switch (error.code) {
+                case "TRANSPORT_UNAVAILABLE":
+                  alert("Login isn't working for this browser on mobile right now. Error: TRANSPORT_UNAVAILABLE");
+                  break;
+                default:
+                  alert("It looks like your login failed. Please report this error to the site admin if the problem persists. " + error);
+              }
+
+            } else if(authData) {
 
               // The user's id
               uid = authData.uid;
@@ -405,6 +399,8 @@ require('./filters');
               // Once they're logged in, redirect the user to their account page
               redirect('/account');
 
+            } else {
+              alert("Uh oh! Something went wrong. Please report this error to the site admin if the problem persists.");
             }
 
           });

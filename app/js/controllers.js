@@ -95,6 +95,10 @@
       // Make sure the ticket number entered is valid
       $scope.validateTicket = function(ticketObj){
 
+        if(!ticketObj.number){
+          $scope.invalidTicketMessage = "Invalid number. Double check your ticket.";
+        }
+        
         $scope.ticketForm = ticketObj;
 
         // Grab ticket number from the ticket form object

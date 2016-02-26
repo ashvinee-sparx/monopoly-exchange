@@ -7,7 +7,7 @@
       <div class="help-tip"><p>Your profile card only shows basic account information. Entering your email address is <a ui-sref="faq">optional</a> if you want to receive notifications of ticket availability.</p></div>
 
       <div class="img-wrap">
-        <img src="{{ profile.avatar }}" alt="avatar">
+        <img src="//graph.facebook.com/{{ profile.facebookId }}/picture?width=100">
       </div>
 
       <p class="name">{{ profile.name }}<a href="https://facebook.com/{{ profile.facebookId }}"><i class="fa fa-facebook"></i></a></p>

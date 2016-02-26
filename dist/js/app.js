@@ -347,7 +347,7 @@ require('./filters');
           ref.authWithOAuthPopup("facebook", function(error, authData) {
 
             if (error) {
-              
+
               switch (error.code) {
                 case "TRANSPORT_UNAVAILABLE":
                   alert("Login isn't working for this browser on mobile right now. Error: TRANSPORT_UNAVAILABLE");
@@ -366,7 +366,6 @@ require('./filters');
                 facebookId: authData.facebook.id,
                 created:    Date.now(),
                 name:       authData.facebook.displayName,
-                avatar:     authData.facebook.profileImageURL
               };
 
               // Set the user's FB ID as a cookie

@@ -98,7 +98,7 @@
         if(!ticketObj.number){
           $scope.invalidTicketMessage = "Invalid number. Double check your ticket.";
         }
-        
+
         $scope.ticketForm = ticketObj;
 
         // Grab ticket number from the ticket form object
@@ -171,6 +171,8 @@
             alert("Sorry, it doesn't look like you're logged in");
           }
 
+        }, function(err){
+          alert(err);
         });
 
         // Clear and reset the form

@@ -1,3 +1,5 @@
+*Please fill out as much information as possible*
+
 [Short description of problem here]
 
 **Is this a bug or new feature?** [Bug/New Feature]

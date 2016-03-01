@@ -1,18 +1,29 @@
   <div class="row user-tickets" ng-if="uid">
 
-    <div class="large-3 large-push-9  columns">
+    <div class="large-4 large-push-8  columns">
 
       <h3>Submit a Ticket </h3>
       <div class="ticket-form">
 
         <form name="ticketForm" ng-submit="validateTicket(ticketForm)">
 
+          <p class="submit-info">1. Enter the Ticket Number</p>
           <div class="input-group">
             <input name="ticketInput" ng-model="ticketForm.number" is-in="ticketsArray" class="input-group-field" type="text" id="email-input" placeholder="Example: A500A" aria-describedby="emailHelpText">
-            <div class="input-group-button">
-              <input type="submit" class="button" value="Submit">
-            </div>
           </div>
+
+          <p class="submit-info">2. Select the Ticket Type</p>
+          <div class="switch large">
+            <input class="switch-input" ng-model="ticketForm.type" id="ticket-type" type="checkbox" name="typeSwitch">
+            <label class="switch-paddle" for="ticket-type">
+              <span class="show-for-sr">Ticket Type</span>
+              <span class="switch-active" aria-hidden="true">Needed</span>
+              <span class="switch-inactive" aria-hidden="true">Available</span>
+            </label>
+          </div>
+
+          <p class="submit-info">3. Add it to the directory</p>
+          <input type="submit" class="button expanded secondary" value="Submit">
 
           <p ng-show="invalidTicketMessage" class="alert label"><i class="fa fa-exclamation-circle"></i>{{ invalidTicketMessage }}</p>
 
@@ -20,9 +31,11 @@
 
       </div>
 
-      <div class="submit-details">
-        <p>Listing a ticket is easy! Simply enter the ID of the ticket and it'll automagically display in the community ticket list.</p>
-        <p>Click the "Type" button next to the ticket to change its type.</p>
+      <div class="submit-info">
+        <h6>What happens next?</h6>
+        <br>
+        <p>When a matching ticket becomes available, you'll receive an email alert.</p>
+        <p>Make sure that you've entered your email address in your <a ui-sref="account">account page</a>.</p>
       </div>
 
       <footer class="row site-footer">
@@ -36,7 +49,7 @@
 
     </div>
 
-    <div class="large-9 large-pull-3 columns">
+    <div class="large-8 large-pull-4 columns">
 
       <h3>Your Submitted Tickets</h3>
 
@@ -56,7 +69,6 @@
           <td ng-show="ticket.needed === false" class="available type"><span class="label">Available</span></td>
           <td ng-show="ticket.needed" class="needed type"><span class="label">Needed</span></td>
           <td class="actions">
-            <a ng-click="ticketStatus(ticket)"><span class="secondary label">Type</span></a>
             <a ng-click="deleteTicket(ticket)"><span class="secondary label delete">Delete</span></a>
           </td>
         </tr>

@@ -3608,6 +3608,21 @@ hr {
     .label.email-delete:hover {
       color: #333; }
 
+.switch-paddle {
+  background-color: #8BC34A; }
+
+input:checked ~ .switch-paddle {
+  background-color: #EF5350; }
+
+.switch-inactive {
+  right: 10%; }
+
+.switch.large .switch-paddle {
+  width: 7.5rem; }
+
+.switch.large input:checked ~ .switch-paddle:after {
+  left: 5.2rem; }
+
 /*--------------------------------------------------------------
 	2.0 Header
 --------------------------------------------------------------*/
@@ -3735,6 +3750,9 @@ hr {
 /*--------------------------------------------------------------
 	5.0 Tickets List
 --------------------------------------------------------------*/
+.submit-info {
+  color: #666666; }
+
 .user-tickets, .all-tickets {
   margin-top: 2em; }
   .user-tickets h3, .all-tickets h3 {
@@ -3758,6 +3776,8 @@ hr {
       position: relative; }
       .user-tickets table th.contact, .user-tickets table th.actions, .all-tickets table th.contact, .all-tickets table th.actions {
         text-align: center; }
+      .user-tickets table th.actions, .all-tickets table th.actions {
+        width: 20%; }
       .user-tickets table th.type, .all-tickets table th.type {
         width: 10%; }
     .user-tickets table td, .all-tickets table td {
@@ -3798,17 +3818,17 @@ hr {
     font-size: 0.85rem;
     color: #999999; }
 
-.submit-details p {
-  color: #666666; }
-
 .ticket-form {
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 2em; }
   .ticket-form .input-group-label {
     background-color: white; }
   .ticket-form i {
     color: #757575; }
   .ticket-form p.alert {
-    padding: 0.5em 1em; }
+    padding: 0.5em 1em;
+    width: 100%; }
   .ticket-form p i {
     color: white;
     padding-right: 0.5em; }

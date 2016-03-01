@@ -60,6 +60,21 @@ hr {
     }
   }
 }
+.switch-paddle {
+  background-color: #8BC34A;
+}
+input:checked ~ .switch-paddle {
+  background-color: #EF5350;
+}
+.switch-inactive {
+  right: 10%;
+}
+.switch.large .switch-paddle {
+  width: 7.5rem;
+}
+.switch.large input:checked ~ .switch-paddle:after {
+  left: 5.2rem;
+}
 
 /*--------------------------------------------------------------
 	2.0 Header
@@ -214,6 +229,9 @@ hr {
 /*--------------------------------------------------------------
 	5.0 Tickets List
 --------------------------------------------------------------*/
+.submit-info {
+  color: #666666;
+}
 
 .user-tickets, .all-tickets {
   margin-top: 2em;
@@ -241,6 +259,9 @@ hr {
       position: relative;
       &.contact, &.actions {
         text-align: center;
+      }
+      &.actions {
+        width: 20%;
       }
       &.type {
         width: 10%;
@@ -298,12 +319,10 @@ hr {
   padding: 3em 2em;
 }
 
-.submit-details p {
-  color: #666666;
-}
-
 .ticket-form {
   margin-bottom: 2em;
+  background-color: white;
+  padding: 2em;
   .input-group-label {
     background-color: white;
   }
@@ -312,6 +331,7 @@ hr {
   }
   p.alert {
     padding: 0.5em 1em;
+    width: 100%;
   }
   p i {
     color: white;

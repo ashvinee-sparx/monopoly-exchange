@@ -96,13 +96,14 @@
       $scope.validateTicket = function(ticketObj){
 
         if(!ticketObj.number){
-          $scope.invalidTicketMessage = "Invalid number. Double check your ticket.";
+          $scope.invalidTicketMessage = "Oops! Make sure you've entered a ticket number.";
         }
 
         $scope.ticketForm = ticketObj;
 
         // Grab ticket number from the ticket form object
         var number = $scope.ticketForm.number;
+        $scope.ticketType = $scope.ticketForm.type;
 
         // Convert all entries to uppercase
         number = number.toUpperCase();
@@ -160,7 +161,7 @@
           if(uid){
 
             $scope.ticketsList.$add({
-              needed:   false,
+              needed:   $scope.ticketType,
               created:  Date.now(),
               num:      $scope.ticketNum,
               user:     uid,
@@ -189,23 +190,19 @@
         }
       };
 
-      // Ticket Status
-      $scope.ticketStatus = function(ticket){
+      // TODO:
+      // Ticket type should be labeled at the time of submission and
+      // user not given an option to change it once it's submitted.
 
-        // Get the specific ticket based on its unique id
-        var ticketStatusRef = ref.child('tickets').child(ticket.$id).child('needed');
+      // When a user submits an 'available' ticket, check if there's
+      // an existing 'needed' ticket and message the NEEDED users.
 
-        // Allow use to toggle between 'needed' and 'available'
-        ticketStatusRef.once("value", function(snapshot) {
-          if( snapshot.val() ){
-            // Needed
-            ticketStatusRef.set(false);
-          } else {
-            // Available
-            ticketStatusRef.set(true);
-          }
+      // When a user submits a 'needed' ticket, check if there's
+      // an existing 'available' ticket and message the AVAILABLE users
 
-        });
+      var userTicketAlert = function(ticketObj){
+
+        console.log(ticketObj);
 
       };
 

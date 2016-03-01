@@ -172,7 +172,13 @@ require('./filters');
 
         // Grab ticket number from the ticket form object
         var number = $scope.ticketForm.number;
-        $scope.ticketType = $scope.ticketForm.type;
+
+        // Assign ticket type
+        if($scope.ticketForm.type === undefined){
+          $scope.ticketType = false;
+        } else {
+          $scope.ticketType = $scope.ticketForm.type;
+        }
 
         // Convert all entries to uppercase
         number = number.toUpperCase();

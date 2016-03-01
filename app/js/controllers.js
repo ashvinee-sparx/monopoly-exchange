@@ -96,7 +96,7 @@
       $scope.validateTicket = function(ticketObj){
 
         if(!ticketObj.number){
-          $scope.invalidTicketMessage = "Oops! Make sure you've entered a ticket number.";
+          $scope.invalidTicketMessage = "Oops! Make sure you've entered a number.";
         }
 
         $scope.ticketForm = ticketObj;
@@ -191,8 +191,6 @@
       };
 
       // TODO:
-      // Ticket type should be labeled at the time of submission and
-      // user not given an option to change it once it's submitted.
 
       // When a user submits an 'available' ticket, check if there's
       // an existing 'needed' ticket and message the NEEDED users.

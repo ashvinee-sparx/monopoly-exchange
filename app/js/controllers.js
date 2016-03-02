@@ -232,14 +232,19 @@
                 return self.indexOf(item) == pos;
               });
 
-              // Create the alert
-              alertsRef.push({
-                emails:     alertEmails.join(', '),
-                users:      matchingUserIds,
-                ticket:     matchingTicketNum,
-                date:       Date.now(),
-                sent:       false,
-              });
+              // Bail if the only user is the one that submitted the "needed" ticket
+              if(alertEmails.length <= 1){
+                return;
+              } else {
+                // Create the alert
+                alertsRef.push({
+                  emails:     alertEmails.join(', '),
+                  users:      matchingUserIds,
+                  ticket:     matchingTicketNum,
+                  date:       Date.now(),
+                  sent:       false,
+                });
+              }
 
             });
 

@@ -12,6 +12,7 @@
       var ref = new Firebase(FIREBASE_REF);
       var ticketsRef = new Firebase(FIREBASE_REF + '/tickets');
       var prizesRef = new Firebase(FIREBASE_REF + '/prizes');
+      var alertsRef = new Firebase(FIREBASE_REF + '/alerts');
       var uid = $cookies.get('mxuser');
       var ticketsArray = [
         'A500A', 'A501B', 'A502C', 'A503D', 'A504E',
@@ -104,12 +105,12 @@
         // Grab ticket number from the ticket form object
         var number = $scope.ticketForm.number;
 
-        // Assign ticket type
+        // Assign default ticket type
         if($scope.ticketForm.type === undefined){
-          $scope.ticketType = false;
-        } else {
-          $scope.ticketType = $scope.ticketForm.type;
+          $scope.ticketForm.type = false;
         }
+
+        $scope.ticketType = $scope.ticketForm.type;
 
         // Convert all entries to uppercase
         number = number.toUpperCase();
@@ -166,7 +167,7 @@
           // If the user is logged in, add the new ticket to the db
           if(uid){
 
-            $scope.ticketsList.$add({
+            ticketsRef.push({
               needed:   $scope.ticketType,
               created:  Date.now(),
               num:      $scope.ticketNum,
@@ -174,10 +175,16 @@
               prize:    prizeName
             });
 
+            // Get the last created ticket ID and pass it to the alert checker
+            ref.child('tickets').limitToLast(1).once("child_added", function(snapshot) {
+              userTicketAlert( snapshot.key() );
+            });
+
           } else {
             alert("Sorry, it doesn't look like you're logged in");
           }
 
+        // If there's a Firebase error, display it
         }, function(err){
           alert(err);
         });
@@ -189,25 +196,66 @@
 
       };
 
+      var userTicketAlert = function(ticketId){
+
+        // Gets the obj for the last submitted ticket
+        ref.child('tickets').child(ticketId).on('value', function(snapshot){
+
+          var matchingUserIds = [];
+          var alertEmails = [];
+          var matchingTicketNum = snapshot.val().num;
+
+          if (snapshot.val().needed){
+
+            // Get matching user IDs
+            ref.child('tickets').orderByChild('num').equalTo( snapshot.val().num ).on('value', function(ticketSnapshot){
+              ticketSnapshot.forEach(function(snap){
+                matchingUserIds.push(snap.val().user);
+              });
+            });
+
+            // Get emails
+            ref.child('users').on('value', function(snapshot){
+              snapshot.forEach(function(childSnapshot) {
+
+                angular.forEach(matchingUserIds, function(value, key) {
+                  if(childSnapshot.key() === value) {
+                    var email = childSnapshot.val().email;
+                    alertEmails.push(email);
+                  }
+                });
+
+              });
+
+              // Check for duplicate email addresses and remove them
+              alertEmails = alertEmails.filter(function(item, pos, self) {
+                return self.indexOf(item) == pos;
+              });
+
+              // Create the alert
+              alertsRef.push({
+                emails:     alertEmails.join(', '),
+                users:      matchingUserIds,
+                ticket:     matchingTicketNum,
+                date:       Date.now(),
+                sent:       false,
+              });
+
+            });
+
+          } else {
+            // Bail if the submitted ticket isn't a "needed" ticket
+            return;
+          }
+
+        });
+      };
+
       // Ticket Deleted
       $scope.deleteTicket = function(ticket){
         if (confirm("Are you sure?")) {
           ref.child('tickets').child(ticket.$id).remove();
         }
-      };
-
-      // TODO:
-
-      // When a user submits an 'available' ticket, check if there's
-      // an existing 'needed' ticket and message the NEEDED users.
-
-      // When a user submits a 'needed' ticket, check if there's
-      // an existing 'available' ticket and message the AVAILABLE users
-
-      var userTicketAlert = function(ticketObj){
-
-        console.log(ticketObj);
-
       };
 
     }

@@ -2,7 +2,7 @@
 
 This site is for players of the 2016 grocery store Monopoly game. If you're not sure what that is, don't feel bad. It might not be available in your area. For those that are playing, use this site to post and exchange tickets with your fellow gamers.
 
-![preview](tickets_sm.png)
+![preview](preview.jpg)
 
 ### Frequently Asked Questions
 
@@ -11,6 +11,8 @@ This site is for players of the 2016 grocery store Monopoly game. If you're not 
 The following stores are listed on the Monopoly board that this website was designed to support:
 
 Vons, Pavilions, Amigos, Albertsons, Safeway, Acme, Jewel-Osco, Shaws, Albertsons, Carrs, Market Street, United Supermarkets, United Express, Randalls, Tom Thumb, Star Market
+
+![preview](tickets_sm.jpg)
 
 **I've found a ticket that I'd like to claim. How do I do that?**
 

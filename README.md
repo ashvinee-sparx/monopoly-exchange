@@ -4,6 +4,8 @@ This site is for players of the 2016 grocery store Monopoly game. If you're not 
 
 ![preview](preview.jpg)
 
+Visit the site - [http://mxclub.net](http://mxclub.net)
+
 ### Frequently Asked Questions
 
 **Can I use this website for my local grocery store's Monopoly game?**

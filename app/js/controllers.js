@@ -204,14 +204,24 @@
           var matchingUserIds = [];
           var alertEmails = [];
           var matchingTicketNum = snapshot.val().num;
+          var matchingTicketUser = snapshot.val().user;
 
+          // Only find a match if the ticket is needed
           if (snapshot.val().needed){
 
             // Get matching user IDs
             ref.child('tickets').orderByChild('num').equalTo( snapshot.val().num ).on('value', function(ticketSnapshot){
+
               ticketSnapshot.forEach(function(snap){
-                matchingUserIds.push(snap.val().user);
+                // Add users with a matching available ticket
+                if(!snap.val().needed){
+                  matchingUserIds.push(snap.val().user);
+                }
               });
+
+              // Add the user with the needed ticket to the alert list
+              matchingUserIds.push(matchingTicketUser);
+
             });
 
             // Get emails
@@ -232,7 +242,7 @@
                 return self.indexOf(item) == pos;
               });
 
-              // Bail if the only user is the one that submitted the "needed" ticket
+              // Bail if the only user is the one that submitted the "needed" ticket. ie: No Match.
               if(alertEmails.length <= 1){
                 return;
               } else {
@@ -241,8 +251,7 @@
                   emails:     alertEmails.join(', '),
                   users:      matchingUserIds,
                   ticket:     matchingTicketNum,
-                  date:       Date.now(),
-                  sent:       false,
+                  date:       Date.now()
                 });
               }
 
